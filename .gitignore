@@ -22,7 +22,16 @@
 *.a
 *.lib
 
+# Debug Information
+*.dSYM
+
 # Executables
 *.exe
 *.out
 *.app
+
+# Actual Project Executables
+
+pcg32-demo
+pcg32-global-demo
+pcg32x2-demo
