@@ -23,6 +23,21 @@
 
 TARGETS = pcg32-global-demo pcg32-demo pcg32x2-demo
 
+CFLAGS += -O3
+CFLAGS += -Wall -Wextra -Waggregate-return -Wcast-align -Wcast-qual	\
+  -Wdisabled-optimization -Wdiv-by-zero -Wendif-labels			\
+  -Wformat-extra-args -Wformat-nonliteral -Wformat-security		\
+  -Wformat-y2k -Wimplicit -Wimport -Winit-self -Winline -Winvalid-pch	\
+  -Wmissing-declarations -Wno-missing-format-attribute			\
+  -Wmissing-include-dirs -Wmultichar -Wpacked -Wpointer-arith		\
+  -Wreturn-type -Wsequence-point -Wsign-compare -Wstrict-aliasing	\
+  -Wstrict-aliasing=2 -Wswitch -Wswitch-default 			\
+  -Wno-unused -Wvariadic-macros -Wwrite-strings -Wc++-compat		\
+  -Werror=declaration-after-statement					\
+  -Werror=implicit-function-declaration -Wmissing-prototypes		\
+  -Werror=nested-externs -Werror=old-style-definition			\
+  -Werror=strict-prototypes -Werror=missing-braces
+
 all: $(TARGETS)
 
 clean:
