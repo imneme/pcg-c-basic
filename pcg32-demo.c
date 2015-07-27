@@ -37,7 +37,7 @@
 
 int main(int argc, char** argv)
 {
-    // Read command-line options
+    /* Read command-line options */
 
     int rounds = 5;
     bool nondeterministic_seed = false;
@@ -54,30 +54,30 @@ int main(int argc, char** argv)
         rounds = atoi(argv[0]);
     }
 
-    // In this version of the code, we'll use a local rng, rather than the
-    // global one.
+    /* In this version of the code, we'll use a local rng, rather than the
+       global one. */
 
     pcg32_random_t rng;
 
-    // You should *always* seed the RNG.  The usual time to do it is the
-    // point in time when you create RNG (typically at the beginning of the
-    // program).
-    //
-    // pcg32_srandom_r takes two 64-bit constants (the initial state, and the
-    // rng sequence selector; rngs with different sequence selectors will
-    // *never* have random sequences that coincide, at all) - the code below
-    // shows three possible ways to do so.
+    /* You should *always* seed the RNG.  The usual time to do it is the
+       point in time when you create RNG (typically at the beginning of the
+       program). */
+
+    /* pcg32_srandom_r takes two 64-bit constants (the initial state, and the
+       rng sequence selector; rngs with different sequence selectors will
+       *never* have random sequences that coincide, at all) - the code below
+       shows three possible ways to do so. */
 
     if (nondeterministic_seed) {
-        // Seed with external entropy -- the time and some program addresses
-        // (which will actually be somewhat random on most modern systems).
-        // A better solution, entropy_getbytes, using /dev/random, is provided
-        // in the full library.
+        /* Seed with external entropy -- the time and some program addresses
+           (which will actually be somewhat random on most modern systems)
+           A better solution, entropy_getbytes, using /dev/random, is provided
+           in the full library. */
         
         pcg32_srandom_r(&rng, time(NULL) ^ (intptr_t)&printf, 
 			      (intptr_t)&rounds);
     } else {
-        // Seed with a fixed constant
+        /* Seed with a fixed constant */
 
         pcg32_srandom_r(&rng, 42u, 54u);
     }

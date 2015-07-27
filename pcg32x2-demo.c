@@ -60,7 +60,7 @@ void pcg32x2_srandom_r(pcg32x2_random_t* rng, uint64_t seed1, uint64_t seed2,
                        uint64_t seq1,  uint64_t seq2)
 {
     uint64_t mask = ~0ull >> 1;
-    // The stream for each of the two generators *must* be distinct
+    /* The stream for each of the two generators *must* be distinct */
     if ((seq1 & mask) == (seq2 & mask)) 
         seq2 = ~seq2;
     pcg32_srandom_r(rng->gen,   seed1, seq1);
@@ -89,7 +89,7 @@ int dummy_global;
 
 int main(int argc, char** argv)
 {
-    // Read command-line options
+    /* Read command-line options */
 
     int rounds = 5;
     bool nondeterministic_seed = false;
@@ -111,27 +111,27 @@ int main(int argc, char** argv)
 
     pcg32x2_random_t rng;
 
-    // You should *always* seed the RNG.  The usual time to do it is the
-    // point in time when you create RNG (typically at the beginning of the
-    // program).
-    //
-    // pcg32x2_srandom_r takes four 64-bit constants (the initial state, and 
-    // the rng sequence selector; rngs with different sequence selectors will
-    // *never* have random sequences that coincide, at all) - the code below
-    // shows three possible ways to do so.
+    /* You should *always* seed the RNG.  The usual time to do it is the
+       point in time when you create RNG (typically at the beginning of the
+       program). */
+
+    /* pcg32x2_srandom_r takes four 64-bit constants (the initial state, and
+       the rng sequence selector; rngs with different sequence selectors will
+       *never* have random sequences that coincide, at all) - the code below
+       shows three possible ways to do so. */
 
     if (nondeterministic_seed) {
-        // Seed with external entropy -- the time and some program addresses
-        // (which will actually be somewhat random on most modern systems).
-        // A better solution, entropy_getbytes, using /dev/random, is provided
-        // in the full library.
+        /* Seed with external entropy -- the time and some program addresses
+           (which will actually be somewhat random on most modern systems).
+           A better solution, entropy_getbytes, using /dev/random, is provided
+           in the full library. */
         
         pcg32x2_srandom_r(&rng, time(NULL) ^ (intptr_t)&printf,
                                ~time(NULL) ^ (intptr_t)&pcg32_random_r,
                                 (intptr_t)&rounds,
                                 (intptr_t)&dummy_global);
     } else {
-        // Seed with a fixed constant
+        /* Seed with a fixed constant */
 
         pcg32x2_srandom_r(&rng, 42u, 42u, 54u, 54u);
     }
