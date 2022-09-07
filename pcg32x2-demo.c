@@ -25,6 +25,7 @@
  * This file was mechanically generated from tests/check-pcg32.c
  */
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -152,7 +153,7 @@ int main(int argc, char** argv)
         for (i = 0; i < 6; ++i) {
             if (i > 0 && i % 3 == 0)
                 printf("\n\t");
-            printf(" 0x%016llx", pcg32x2_random_r(&rng));
+            printf(" 0x%016" PRIx64, pcg32x2_random_r(&rng));
         }
         printf("\n");
 
