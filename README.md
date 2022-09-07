@@ -22,7 +22,7 @@ at the sample code -- hopefully it should be fairly self explanatory.
 There is no library to build.  Just use the code.  You can however build the
 three demo programs.
 
-The code is written in C89-style C with no significant platform dependencies.
+The code is written in C99-style C with no significant platform dependencies.
 On a Unix-style system (e.g., Linux, Mac OS X), or any system with `make`,
 you should be able to just type type
 
